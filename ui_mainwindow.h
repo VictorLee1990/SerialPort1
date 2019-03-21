@@ -156,17 +156,18 @@ public:
     QWidget *layoutWidget8;
     QGridLayout *gridLayout_4;
     QLineEdit *lineEdit;
+    QToolBar *mainToolBar;
+    QStatusBar *statusBar;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuBaudRate;
     QMenu *menuAbout;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
+        MainWindow->setEnabled(true);
         MainWindow->resize(545, 480);
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
@@ -175,6 +176,7 @@ public:
         MainWindow->setSizePolicy(sizePolicy);
         MainWindow->setMinimumSize(QSize(545, 480));
         MainWindow->setMaximumSize(QSize(545, 480));
+        MainWindow->setMouseTracking(true);
         actionSave_log = new QAction(MainWindow);
         actionSave_log->setObjectName(QStringLiteral("actionSave_log"));
         actionSave_log->setCheckable(false);
@@ -886,9 +888,18 @@ public:
         lineEdit->setGeometry(QRect(10, 240, 291, 21));
         lineEdit->setStyleSheet(QStringLiteral("selection-background-color: rgb(255, 255, 0);"));
         MainWindow->setCentralWidget(centralWidget);
+        mainToolBar = new QToolBar(MainWindow);
+        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
+        statusBar = new QStatusBar(MainWindow);
+        statusBar->setObjectName(QStringLiteral("statusBar"));
+        MainWindow->setStatusBar(statusBar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 545, 21));
+        menuBar->setMouseTracking(false);
+        menuBar->setAcceptDrops(false);
+        menuBar->setNativeMenuBar(false);
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuBaudRate = new QMenu(menuBar);
@@ -898,13 +909,10 @@ public:
         menuBaudRate->setSeparatorsCollapsible(true);
         menuAbout = new QMenu(menuBar);
         menuAbout->setObjectName(QStringLiteral("menuAbout"));
+        menuAbout->setMouseTracking(false);
+        menuAbout->setTabletTracking(false);
+        menuAbout->setAcceptDrops(false);
         MainWindow->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(MainWindow);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuBaudRate->menuAction());

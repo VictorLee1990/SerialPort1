@@ -25,6 +25,9 @@
 #include <QKeySequence>
 #include <QActionGroup>
 #include <QListWidget>
+#include "aboutversionui.h"
+#include <QCloseEvent>
+
 namespace Ui {
 class MainWindow;
 }
@@ -46,6 +49,7 @@ public slots:
     void on_rssi_Btn_clicked();
     void actionSaveLog();
     void actionBaudRate(QAction *ActionCheck);
+    void actionAbout(QAction* ActionCheck);
 private slots:
 
     void on_SendData_Btn_clicked();
@@ -82,14 +86,12 @@ private slots:
 
     void on_radioButton_luna2_PASS_toggled(bool checked);
 
-
-
-
-
     void on_actionSaveBaudRate_triggered();
 
     void on_textEdit_printdata_textChanged();
 
+protected:
+     void closeEvent(QCloseEvent *event);
 private:
     Ui::MainWindow *ui;
     SerialPort *_serialPoart = nullptr;
@@ -118,6 +120,8 @@ private:
       QCompleter *_UDIDCompleter;
       QShortcut *_shortEnter;
       QActionGroup *_baudRateGroup;
+      QAction* _aboutVersion;
+      AboutVersionUI *_aboutVersionUI;
 };
 
 #endif // MAINWINDOW_H

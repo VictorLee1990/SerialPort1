@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     _label_rxByte = new QLabel();
     _label_txByte = new QLabel();
     _label_rssi = new QLabel();
-
+    _aboutVersionUI = nullptr;
     ui->statusBar->addPermanentWidget(_label_txByte);
     _label_txByte->setText("Tx  " + QString::number(_serialPoart->txByte) + " Byte|");
     ui->statusBar->addPermanentWidget(_label_rxByte);
@@ -46,6 +46,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //     connect(_shortEnter, SIGNAL(activated()), this, SLOT(on_SendData_Btn_clicked()));
     ui->SendData_Btn->setShortcut(tr("Return"));
 
+    _aboutVersion = new QAction(this);
+    connect(ui->menuAbout,SIGNAL(triggered(QAction*)),this,SLOT(actionAbout(QAction*)));
+   _aboutVersion->setText("Version");
+    ui->menuAbout->addAction(_aboutVersion);
+
     _baudRateGroup = new QActionGroup(this);
     _baudRateGroup->setExclusive(true);
     ui->action1200->setActionGroup(_baudRateGroup);
@@ -71,6 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+
     delete ui;
 }
 
@@ -536,6 +542,14 @@ void MainWindow::actionBaudRate(QAction* ActionCheck)
 
 }
 
+void MainWindow::actionAbout(QAction* ActionCheck)
+{
+    _aboutVersionUI = new AboutVersionUI();
+    _aboutVersionUI->setWindowTitle("VersionControl");
+    _aboutVersionUI->show();
+
+}
+
 void MainWindow::on_SaveConfig_Btn_clicked()
 {
     if(_serialPoart->isOpened)
@@ -728,6 +742,17 @@ void MainWindow::on_actionSaveBaudRate_triggered()
 
 void MainWindow::on_textEdit_printdata_textChanged()
 {
-//    _serialPoart->sendData(ui->lineEdit->text().toLatin1(),false);
-//    _label_txByte->setText("Tx  " + QString::number(_serialPoart->txByte) + " Byte|");
+    //    _serialPoart->sendData(ui->lineEdit->text().toLatin1(),false);
+    //    _label_txByte->setText("Tx  " + QString::number(_serialPoart->txByte) + " Byte|");
 }
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    if(_aboutVersionUI != nullptr)
+    {
+        _aboutVersionUI->close();
+        delete _aboutVersionUI;
+    }
+}
+
+
