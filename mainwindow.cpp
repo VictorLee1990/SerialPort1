@@ -311,7 +311,7 @@ void MainWindow::on_SendData_Btn_clicked()
                 if(ui->checkBox_luna2_master->isChecked())
                 {
                     if(ui->textEdit_luna2_group->toPlainText() != "")
-                    {
+                    {                        
                         QString sendData;
                         sendData = "&*" + ui->textEdit_luna2_group->toPlainText().toLatin1() +"," + _UDID + "," + ui->lineEdit->text().toLatin1();
                         _serialPoart->sendData(sendData,false);
@@ -544,9 +544,14 @@ void MainWindow::actionBaudRate(QAction* ActionCheck)
 
 void MainWindow::actionAbout(QAction* ActionCheck)
 {
+
     _aboutVersionUI = new AboutVersionUI();
+    _aboutVersionUI->setWindowModality(Qt::ApplicationModal);
+    _aboutVersionUI->setAttribute(Qt::WA_DeleteOnClose);
     _aboutVersionUI->setWindowTitle("VersionControl");
     _aboutVersionUI->show();
+
+
 
 }
 
@@ -748,11 +753,11 @@ void MainWindow::on_textEdit_printdata_textChanged()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    if(_aboutVersionUI != nullptr)
-    {
-        _aboutVersionUI->close();
-        delete _aboutVersionUI;
-    }
+//    if(_aboutVersionUI != nullptr)
+//    {
+//        _aboutVersionUI->close();
+//        delete _aboutVersionUI;
+//    }
 }
 
 
