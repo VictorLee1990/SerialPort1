@@ -363,7 +363,7 @@ void MainWindow::on_configure_Btn_clicked()
         if(_serialPoart != nullptr)
         {
             _ConfigCount = 1;
-            myTimer2->start(100);
+            myTimer2->start(350);
         }
     }
 }

@@ -911,6 +911,9 @@ color: rgb(255, 255, 255);</string>
                <height>18</height>
               </size>
              </property>
+             <property name="editable">
+              <bool>true</bool>
+             </property>
              <property name="sizeAdjustPolicy">
               <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
              </property>
@@ -934,12 +937,27 @@ color: rgb(255, 255, 255);</string>
              </item>
              <item>
               <property name="text">
+               <string>16</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>17</string>
               </property>
              </item>
              <item>
               <property name="text">
                <string>18</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>19</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>20</string>
               </property>
              </item>
             </widget>

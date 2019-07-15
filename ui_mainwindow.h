@@ -521,10 +521,14 @@ public:
         comboBox_TXO->addItem(QString());
         comboBox_TXO->addItem(QString());
         comboBox_TXO->addItem(QString());
+        comboBox_TXO->addItem(QString());
+        comboBox_TXO->addItem(QString());
+        comboBox_TXO->addItem(QString());
         comboBox_TXO->setObjectName(QStringLiteral("comboBox_TXO"));
         sizePolicy1.setHeightForWidth(comboBox_TXO->sizePolicy().hasHeightForWidth());
         comboBox_TXO->setSizePolicy(sizePolicy1);
         comboBox_TXO->setMaximumSize(QSize(150, 18));
+        comboBox_TXO->setEditable(true);
         comboBox_TXO->setSizeAdjustPolicy(QComboBox::AdjustToContentsOnFirstShow);
         comboBox_TXO->setMinimumContentsLength(0);
         splitter_2->addWidget(comboBox_TXO);
@@ -1015,8 +1019,11 @@ public:
         comboBox_TXO->setItemText(0, QString());
         comboBox_TXO->setItemText(1, QApplication::translate("MainWindow", "14", nullptr));
         comboBox_TXO->setItemText(2, QApplication::translate("MainWindow", "15", nullptr));
-        comboBox_TXO->setItemText(3, QApplication::translate("MainWindow", "17", nullptr));
-        comboBox_TXO->setItemText(4, QApplication::translate("MainWindow", "18", nullptr));
+        comboBox_TXO->setItemText(3, QApplication::translate("MainWindow", "16", nullptr));
+        comboBox_TXO->setItemText(4, QApplication::translate("MainWindow", "17", nullptr));
+        comboBox_TXO->setItemText(5, QApplication::translate("MainWindow", "18", nullptr));
+        comboBox_TXO->setItemText(6, QApplication::translate("MainWindow", "19", nullptr));
+        comboBox_TXO->setItemText(7, QApplication::translate("MainWindow", "20", nullptr));
 
         comboBox_BW->setItemText(0, QString());
         comboBox_BW->setItemText(1, QApplication::translate("MainWindow", "0", nullptr));
