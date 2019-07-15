@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include <QApplication>
-#define Version_str            "2.1.1"
-#define VersionDate_str       "2019.5.23"
+#define Version_str            "2.1.2"
+#define VersionDate_str       "2019.7.15"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
