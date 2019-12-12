@@ -21,9 +21,9 @@ public:
     void setSerialPortParity(int PortParity);
     void setSerialPortDateBits(int DataBits);
     void setSerialPortStopBits(int StopBits);
-    void closeSerialPort(void);
+    bool closeSerialPort(void);
     void sendData(QString Data, bool HexSend);
-
+    QSerialPort* getSerialPort();
     int rxByte;
     int txByte;
     bool isOpened;

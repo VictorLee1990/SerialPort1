@@ -43,6 +43,7 @@ bool SerialPort::openSerialPort(QSerialPortInfo SerialPortInfo)
 
         serial->setFlowControl(QSerialPort::NoFlowControl);
         connect(this->serial,SIGNAL(readyRead()), this,SLOT(readData()));
+//        disconnect(this->serial,SIGNAL(readyRead()), this,SLOT(readData()));
         return true;
     }
     else
@@ -150,7 +151,7 @@ void SerialPort::setSerialPortStopBits(int StopBits)
     qDebug()<<serial->stopBits();
 }
 
-void SerialPort::closeSerialPort()
+bool SerialPort::closeSerialPort()
 {
     if(serial != nullptr)
     {
@@ -160,8 +161,10 @@ void SerialPort::closeSerialPort()
             serial = nullptr;
             delete serial;
             isOpened = false;
+            return isOpened;
         }
     }
+     return false;
 
 }
 
@@ -183,6 +186,11 @@ void SerialPort::sendData(QString DataStr, bool HexSend)
             txByte += DataStr.toLatin1().count();
         }
     }
+}
+
+QSerialPort *SerialPort::getSerialPort()
+{
+    return serial;
 }
 
 QString SerialPort::readData()

@@ -34,7 +34,9 @@ SOURCES += \
     at_commandsystem.cpp \
     lun2_commandsystem.cpp \
     commandfactory.cpp \
-    aboutversionui.cpp
+    aboutversionui.cpp \
+    updateui.cpp \
+    xmodem.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -43,11 +45,14 @@ HEADERS += \
     at_commandsystem.h \
     commandfactory.h \
     luna2_commandsystem.h \
-    aboutversionui.h
+    aboutversionui.h \
+    updateui.h \
+    xmodem.h
 
 FORMS += \
         mainwindow.ui \
-    aboutversionui.ui
+    aboutversionui.ui \
+    updateui.ui
 RC_ICONS = images.ico
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

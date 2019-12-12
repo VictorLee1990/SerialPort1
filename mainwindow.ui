@@ -884,6 +884,11 @@ color: rgb(255, 255, 255);</string>
              </item>
              <item>
               <property name="text">
+               <string>868000000</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>920000000</string>
               </property>
              </item>
@@ -1666,6 +1671,7 @@ background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #E1E4E6,stop:1 
      <string>File</string>
     </property>
     <addaction name="actionSave_log"/>
+    <addaction name="actionUpdate"/>
    </widget>
    <widget class="QMenu" name="menuBaudRate">
     <property name="contextMenuPolicy">
@@ -1792,6 +1798,11 @@ background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #E1E4E6,stop:1 
    </property>
    <property name="text">
     <string>1200</string>
+   </property>
+  </action>
+  <action name="actionUpdate">
+   <property name="text">
+    <string>Update</string>
    </property>
   </action>
  </widget>

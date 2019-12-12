@@ -53,6 +53,7 @@ public:
     QAction *action115200;
     QAction *actionSaveBaudRate;
     QAction *action1200;
+    QAction *actionUpdate;
     QWidget *centralWidget;
     QGroupBox *SerialPort;
     QGridLayout *gridLayout_3;
@@ -209,6 +210,8 @@ public:
         action1200 = new QAction(MainWindow);
         action1200->setObjectName(QStringLiteral("action1200"));
         action1200->setCheckable(true);
+        actionUpdate = new QAction(MainWindow);
+        actionUpdate->setObjectName(QStringLiteral("actionUpdate"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         SerialPort = new QGroupBox(centralWidget);
@@ -502,6 +505,7 @@ public:
         splitter_2->setOrientation(Qt::Vertical);
         splitter_2->setOpaqueResize(false);
         comboBox_RFFrequency = new QComboBox(splitter_2);
+        comboBox_RFFrequency->addItem(QString());
         comboBox_RFFrequency->addItem(QString());
         comboBox_RFFrequency->addItem(QString());
         comboBox_RFFrequency->addItem(QString());
@@ -922,6 +926,7 @@ public:
         menuBar->addAction(menuBaudRate->menuAction());
         menuBar->addAction(menuAbout->menuAction());
         menuFile->addAction(actionSave_log);
+        menuFile->addAction(actionUpdate);
         menuBaudRate->addAction(action1200);
         menuBaudRate->addAction(action2400);
         menuBaudRate->addAction(action4800);
@@ -957,6 +962,7 @@ public:
         action115200->setText(QApplication::translate("MainWindow", "115200", nullptr));
         actionSaveBaudRate->setText(QApplication::translate("MainWindow", "SaveBaudRate", nullptr));
         action1200->setText(QApplication::translate("MainWindow", "1200", nullptr));
+        actionUpdate->setText(QApplication::translate("MainWindow", "Update", nullptr));
         SerialPort->setTitle(QApplication::translate("MainWindow", "SerialPort", nullptr));
         parity_CB->setItemText(0, QApplication::translate("MainWindow", "None", nullptr));
         parity_CB->setItemText(1, QApplication::translate("MainWindow", "Even", nullptr));
@@ -1012,9 +1018,10 @@ public:
         comboBox_RFFrequency->setItemText(1, QApplication::translate("MainWindow", "473000000", nullptr));
         comboBox_RFFrequency->setItemText(2, QApplication::translate("MainWindow", "475000000", nullptr));
         comboBox_RFFrequency->setItemText(3, QApplication::translate("MainWindow", "477000000", nullptr));
-        comboBox_RFFrequency->setItemText(4, QApplication::translate("MainWindow", "920000000", nullptr));
-        comboBox_RFFrequency->setItemText(5, QApplication::translate("MainWindow", "923000000", nullptr));
-        comboBox_RFFrequency->setItemText(6, QApplication::translate("MainWindow", "925000000", nullptr));
+        comboBox_RFFrequency->setItemText(4, QApplication::translate("MainWindow", "868000000", nullptr));
+        comboBox_RFFrequency->setItemText(5, QApplication::translate("MainWindow", "920000000", nullptr));
+        comboBox_RFFrequency->setItemText(6, QApplication::translate("MainWindow", "923000000", nullptr));
+        comboBox_RFFrequency->setItemText(7, QApplication::translate("MainWindow", "925000000", nullptr));
 
         comboBox_TXO->setItemText(0, QString());
         comboBox_TXO->setItemText(1, QApplication::translate("MainWindow", "14", nullptr));

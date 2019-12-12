@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(_clear_Btn,SIGNAL(clicked()),this,SLOT(on_clear_Btn_clicked()));
     connect(_rssi_Btn,SIGNAL(clicked()),this,SLOT(on_rssi_Btn_clicked()));
     connect(ui->actionSave_log,SIGNAL(triggered(bool)),this,SLOT(actionSaveLog()));
+    connect(ui->actionUpdate,SIGNAL(triggered(bool)),this,SLOT(actionUpdate()));
     _ConfigCount = 1;
 
     _wordCompleter = new QCompleter(_wordList, this);
@@ -48,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     _aboutVersion = new QAction(this);
     connect(ui->menuAbout,SIGNAL(triggered(QAction*)),this,SLOT(actionAbout(QAction*)));
-   _aboutVersion->setText("Version");
+    _aboutVersion->setText("Version");
     ui->menuAbout->addAction(_aboutVersion);
 
     _baudRateGroup = new QActionGroup(this);
@@ -311,7 +312,7 @@ void MainWindow::on_SendData_Btn_clicked()
                 if(ui->checkBox_luna2_master->isChecked())
                 {
                     if(ui->textEdit_luna2_group->toPlainText() != "")
-                    {                        
+                    {
                         QString sendData;
                         sendData = "&*" + ui->textEdit_luna2_group->toPlainText().toLatin1() +"," + _UDID + "," + ui->lineEdit->text().toLatin1();
                         _serialPoart->sendData(sendData,false);
@@ -397,7 +398,7 @@ void MainWindow::on_openPort_Btn_toggled(bool checked)
         int Parity = ui->parity_CB->currentIndex();
         int DataBits = ui->databit_CB->currentIndex();
         int StopBits = ui->stopbit_CB->currentIndex();
-        bool isOpen;
+
         isOpen = _serialPoart->openSerialPort(_serialPortList[Index]);
         if(isOpen)
         {
@@ -435,8 +436,8 @@ void MainWindow::on_openPort_Btn_toggled(bool checked)
     {
         myTimer2->stop();
         _luna2CommandSys->~AT_commandSystem();
-        _serialPoart->closeSerialPort();
-        ui->openPort_Btn->setText("OpenPort");
+        isOpen = _serialPoart->closeSerialPort();
+        ui->openPort_Btn->setText("Open Port");
         ui->serialPortAssitant_CB->setEnabled(true);
         ui->baud_CB->setEnabled(true);
         ui->databit_CB->setEnabled(true);
@@ -494,6 +495,25 @@ void MainWindow::actionSaveLog()
             QMessageBox::critical(this, tr("Error"), tr("Non posso salvare il file"));
             return;
         }
+    }
+}
+
+void MainWindow::actionUpdate()
+{
+    if(isOpen)
+    {
+        _updateUI = new UpdateUI();
+        _updateUI->setSerialPort(_serialPoart->getSerialPort(),_serialPoart,_serialPortList[ui->serialPortAssitant_CB->currentIndex()]);
+        QByteArray rxData = _serialPoart->getSerialPort()->readAll();
+        //    disconnect(_serialPoart->getSerialPort(),SIGNAL(readyRead()), _serialPoart,SLOT(readData()));
+
+        //    _aboutVersionUI->setWindowModality(Qt::ApplicationModal);
+        //    _aboutVersionUI->setAttribute(Qt::WA_DeleteOnClose);
+        //    _aboutVersionUI->setWindowTitle("VersionControl");
+        _updateUI->setWindowModality(Qt::ApplicationModal);
+        _updateUI->setAttribute(Qt::WA_DeleteOnClose);
+        _updateUI->show();
+        QObject::connect(_updateUI,SIGNAL(quitSignal()),_updateUI, SLOT(close()));
     }
 }
 
@@ -753,11 +773,11 @@ void MainWindow::on_textEdit_printdata_textChanged()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-//    if(_aboutVersionUI != nullptr)
-//    {
-//        _aboutVersionUI->close();
-//        delete _aboutVersionUI;
-//    }
+    //    if(_aboutVersionUI != nullptr)
+    //    {
+    //        _aboutVersionUI->close();
+    //        delete _aboutVersionUI;
+    //    }
 }
 
 

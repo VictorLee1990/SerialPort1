@@ -27,7 +27,7 @@
 #include <QListWidget>
 #include "aboutversionui.h"
 #include <QCloseEvent>
-
+#include "updateui.h"
 namespace Ui {
 class MainWindow;
 }
@@ -48,6 +48,7 @@ public slots:
     void on_clear_Btn_clicked();
     void on_rssi_Btn_clicked();
     void actionSaveLog();
+    void actionUpdate();
     void actionBaudRate(QAction *ActionCheck);
     void actionAbout(QAction* ActionCheck);
 private slots:
@@ -91,7 +92,7 @@ private slots:
     void on_textEdit_printdata_textChanged();
 
 protected:
-     void closeEvent(QCloseEvent *event);
+    void closeEvent(QCloseEvent *event);
 private:
     Ui::MainWindow *ui;
     SerialPort *_serialPoart = nullptr;
@@ -108,20 +109,22 @@ private:
     QLabel *_label_txByte;
     QPushButton *_clear_Btn;
     QPushButton *_rssi_Btn;
-     QLabel *_label_rssi;
-     CommandFactory _commandFactory;
-     AT_commandSystem *_luna2CommandSys;
-      QString _UDID;
+    QLabel *_label_rssi;
+    CommandFactory _commandFactory;
+    AT_commandSystem *_luna2CommandSys;
+    QString _UDID;
     int _luna2Griup;
     QStringList _wordList;
-      QStringList _word_UDID_List;
-     QLineEdit *lineEdit;
-      QCompleter *_wordCompleter;
-      QCompleter *_UDIDCompleter;
-      QShortcut *_shortEnter;
-      QActionGroup *_baudRateGroup;
-      QAction* _aboutVersion;
-      AboutVersionUI *_aboutVersionUI;
+    QStringList _word_UDID_List;
+    QLineEdit *lineEdit;
+    QCompleter *_wordCompleter;
+    QCompleter *_UDIDCompleter;
+    QShortcut *_shortEnter;
+    QActionGroup *_baudRateGroup;
+    QAction* _aboutVersion;
+    AboutVersionUI *_aboutVersionUI;
+    UpdateUI *_updateUI;
+    bool isOpen = false;
 };
 
 #endif // MAINWINDOW_H
